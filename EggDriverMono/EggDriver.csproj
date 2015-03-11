@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{948B3504-5B70-4649-8FE4-BDE1FB46EC69};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{B4E055B1-8D11-45B9-B2F1-CB2C8D3EA1EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TestPlant.EggDriver</RootNamespace>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <AssemblyName>EggDriver</AssemblyName>
+    <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <UseRefCounting>false</UseRefCounting>
+    <UseSGen>false</UseSGen>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <CreatePackage>false</CreatePackage>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <EnablePackageSigning>false</EnablePackageSigning>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <UseRefCounting>false</UseRefCounting>
+    <UseSGen>false</UseSGen>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <CreatePackage>false</CreatePackage>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <EnablePackageSigning>false</EnablePackageSigning>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="MonoMac" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="XML-RPC.NET-2.5.0\" />
+    <Folder Include="src\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\src\EggDriveException.cs">
+      <Link>src\EggDriveException.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EggDriver.cs">
+      <Link>src\EggDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EggDriveXmlRpcConnector.cs">
+      <Link>src\EggDriveXmlRpcConnector.cs</Link>
+    </Compile>
+    <Compile Include="..\src\SenseTalkStatementBuilder.cs">
+      <Link>src\SenseTalkStatementBuilder.cs</Link>
+    </Compile>
+    <Compile Include="XML-RPC.NET-2.5.0\AssemblyBuildNumber.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\AssemblyDesc.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\AssemblyInfo.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\DateTime8601.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\GuidEx.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\IHttpRequest.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\IHttpRequestHandler.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\IHttpResponse.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\IXmlRpcProxy.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\RequestResponseLogger.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\SystemMethodsBase.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\Tracer.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\util.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcAsyncResult.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcBeginAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcBoolean.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcClientFormatterSink.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcClientFormatterSinkProvider.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcClientProtocol.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcDateTime.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcDocWriter.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcDouble.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcEndAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcException.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcFaultException.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcHttpRequest.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcHttpResponse.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcHttpServerProtocol.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcInt.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcListenerRequest.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcListenerResponse.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcListenerService.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcLogger.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcMemberAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcMethodAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcMethodInfo.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcMissingMappingAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcNonStandard.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcParameterAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcParameterInfo.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcProxyCodeGen.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcProxyGen.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcRequest.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcRequestEventArgs.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcResponse.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcResponseEventArgs.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcReturnValueAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcSerializer.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcServerFormatterSink.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcServerFormatterSinkProvider.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcServerProtocol.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcService.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcServiceAttribute.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcServiceInfo.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcStruct.cs" />
+    <Compile Include="XML-RPC.NET-2.5.0\XmlRpcUrlAttribute.cs" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="Hierarchical" ResourceNamePolicy="FileFormatDefault" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
