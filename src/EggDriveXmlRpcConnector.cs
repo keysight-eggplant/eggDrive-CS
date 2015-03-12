@@ -20,11 +20,22 @@ namespace TestPlant.EggDriver
 		public object ReturnValue;
 		public object Result;
 
+		public bool ReturnValueAsBool ()
+		{
+			return ReturnValue as bool? == true;
+		}
+
 		public PropertyList ReturnValueAsPropertyList ()
 		{
 			var h = ReturnValue as Hashtable;
-			if (h == null)
-				return null;
+
+			if (h == null) {
+				var pLists = ReturnValueAsPropertyLists ();
+				if (pLists != null && pLists.Length > 0)
+					return pLists [0];
+				else
+					return null;
+			}
 
 			return h
 				.Cast<DictionaryEntry> ()
@@ -36,8 +47,13 @@ namespace TestPlant.EggDriver
 			var list = ReturnValue as object[];
 			var hashtables = list == null ? null : list.Cast<Hashtable> ().ToArray ();
 
-			if (hashtables == null)
-				return null;
+			if (hashtables == null) {
+				var pList = ReturnValueAsPropertyList ();
+				if (pList != null)
+					return new [] { pList };
+				else
+					return null;
+			}
 
 			var mutable = new List<PropertyList> ();
 			foreach (Hashtable h in hashtables) {
