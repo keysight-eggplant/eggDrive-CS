@@ -367,19 +367,10 @@ namespace TestPlant.EggDriver
 
 		public PropertyList ImageInfo (string imageName)
 		{
-			string[] imageNames = { imageName };
-			var pLists = ImageInfo(imageNames); 
-			return (pLists != null && pLists.Length > 0) ? pLists [0] : null;
-		}
-
-		public PropertyList[] ImageInfo (string[] imageNames)
-		{
-			var builder = new SenseTalkStatementBuilder ("ImageInfo", SenseTalkStatementType.Function);
-
-			if (imageNames != null) foreach (string i in imageNames)
-				builder.AddQuotedParameter (i);
-
-			return Execute (builder.ToString ()).ReturnValueAsPropertyLists ();
+			return Execute ((new SenseTalkStatementBuilder ("ImageInfo", SenseTalkStatementType.Function))
+				.AddQuotedParameter (imageName)
+				.ToString ())
+					.ReturnValueAsPropertyList ();
 		}
 
 		public void WaitFor (string imageName, double? searchTimeoutSeconds)
@@ -390,43 +381,21 @@ namespace TestPlant.EggDriver
 				.ToString());
 		}
 
-		public void WaitFor (string[] imageNames, double? searchTimeoutSeconds)
+		public bool ImageFound (string imageName, double? searchTimeoutSeconds = null)
 		{
-			var builder = (new SenseTalkStatementBuilder ("WaitFor"))
-				.AddParameter (searchTimeoutSeconds);
-
-			foreach (var imageName in imageNames)
-				builder.AddQuotedParameter (imageName);
-
-			Execute (builder.ToString ());
-		}
-
-		public bool ImageFound (object imageNameOrNames, double? searchTimeoutSeconds = null)
-		{
-			var builder = new SenseTalkStatementBuilder ("ImageFound", SenseTalkStatementType.Function);
-			var imageNames = imageNameOrNames as string[];
-			var imageName = imageNameOrNames as string;
-
-			builder.AddParameter (searchTimeoutSeconds);
-
-			if (imageNames != null) foreach (string i in imageNames)
-				builder.AddQuotedParameter (i);
-			else if (imageName != null)
-				builder.AddQuotedParameter (imageName);
-			else
-				builder.AddParameter (imageNameOrNames);
-				
-			return (Execute (builder.ToString ()).ReturnValue as bool?) == true;
+			return Execute ((new SenseTalkStatementBuilder ("ImageFound", SenseTalkStatementType.Function))
+				.AddParameter (searchTimeoutSeconds)
+				.AddQuotedParameter (imageName)
+				.ToString ())
+					.ReturnValueAsBool ();
 		}
 			
-		public Point[] EveryImageLocation (string[] imageNames)
+		public Point[] EveryImageLocation (string imageName)
 		{
-			var builder = new SenseTalkStatementBuilder ("EveryImageLocation", SenseTalkStatementType.Function);
-
-			if (imageNames != null) foreach (string i in imageNames)
-				builder.AddQuotedParameter (i);
-
-			return Execute (builder.ToString ()).ReturnValueAsPoints ();
+			return Execute ((new SenseTalkStatementBuilder ("EveryImageLocation", SenseTalkStatementType.Function))
+				.AddQuotedParameter (imageName)
+				.ToString ())
+					.ReturnValueAsPoints ();
 		}
 
 #endregion
@@ -467,14 +436,6 @@ namespace TestPlant.EggDriver
 		{
 			return Execute ((new SenseTalkStatementBuilder ("ReadText", SenseTalkStatementType.Function))
 				.AddParameter (imageName)
-				.AddPropertyListParameters (options)
-				.ToString()).ReturnValue as string;
-		}
-
-		public string ReadText(string[] imageNames, PropertyList options = null)
-		{
-			return Execute ((new SenseTalkStatementBuilder ("ReadText", SenseTalkStatementType.Function))
-				.AddParameter (imageNames)
 				.AddPropertyListParameters (options)
 				.ToString()).ReturnValue as string;
 		}
