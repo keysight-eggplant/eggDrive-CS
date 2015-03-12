@@ -10,16 +10,26 @@ namespace TestPlant.EggDriver
 
 	public class SenseTalkStatementBuilder
 	{
-		public object NameOrExpression = "Put";
-		public ArrayList Parameters = new ArrayList();
-		public Dictionary<string, object> PropertyListParameters = new Dictionary<string, object>();
+		protected const string DefaultCommandName = "Put";
+
 		public SenseTalkStatementType StatementType = SenseTalkStatementType.Command;
+		public object NameOrExpression = DefaultCommandName;
+		public LinkedList<object> Parameters = new LinkedList<object>();
+		public Dictionary<string, object> PropertyListParameters = new Dictionary<string, object>();
 
 		public SenseTalkStatementBuilder () {}
 
 		public SenseTalkStatementBuilder (string commandName) 
 		{
 			this.NameOrExpression = commandName;
+		}
+
+		public void Reset ()
+		{
+			StatementType = SenseTalkStatementType.Command;
+			NameOrExpression = DefaultCommandName;
+			Parameters = new LinkedList<object> ();
+			PropertyListParameters = new Dictionary<string, object> ();
 		}
 
 		public SenseTalkStatementBuilder (object nameOrExpression, SenseTalkStatementType statementType) 
@@ -31,7 +41,7 @@ namespace TestPlant.EggDriver
 		public SenseTalkStatementBuilder AddParameter (object parameter)
 		{
 			if (parameter != null)
-				this.Parameters.Add (parameter);
+				this.Parameters.AddLast (parameter);
 			return this;
 		}
 
@@ -45,7 +55,7 @@ namespace TestPlant.EggDriver
 		public SenseTalkStatementBuilder AddQuotedParameter (object parameter)
 		{
 			if (parameter != null)
-				this.Parameters.Add (Quote (FormatObject (parameter)));
+				this.Parameters.AddLast (Quote (FormatObject (parameter)));
 			return this;
 		}
 
@@ -84,7 +94,7 @@ namespace TestPlant.EggDriver
 			return this;
 		}
 
-		public override string ToString()
+		public override string ToString ()
 		{
 			string s = null;
 
@@ -205,7 +215,7 @@ namespace TestPlant.EggDriver
 
 		public static string BuildCommandStatement (
 			string commandName,
-			ArrayList parameters,
+			LinkedList<object> parameters,
 			Dictionary<string, object> propertyListParameters)
 		{
 			var stringBuilder = new StringBuilder(commandName);
@@ -226,7 +236,7 @@ namespace TestPlant.EggDriver
 
 		public static string BuildFunctionStatement (
 			string functionName,
-			ArrayList parameters,
+			LinkedList<object> parameters,
 			Dictionary<string, object> propertyListParameters)
 		{
 			var sb = (new StringBuilder(functionName)).Append (" (");
@@ -236,7 +246,7 @@ namespace TestPlant.EggDriver
 
 		private static void BuildArgumentList (
 			StringBuilder stringBuilder,
-			ArrayList parameters,
+			LinkedList<object> parameters,
 			Dictionary<string, object> propertyListParameters)
 		{
 			bool firstElementPrinted = false;
