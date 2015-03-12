@@ -39,7 +39,7 @@ namespace CookComputing.XmlRpc
       try
       {
         XmlRpcSerializer serializer = new XmlRpcSerializer();
-        Type type = this.GetType();
+        //Type type = this.GetType();
         XmlRpcServiceAttribute serviceAttr = (XmlRpcServiceAttribute)
           Attribute.GetCustomAttribute(this.GetType(),
           typeof(XmlRpcServiceAttribute));
