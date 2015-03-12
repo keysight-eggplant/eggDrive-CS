@@ -22,7 +22,7 @@ try {
     Console.WriteLine ("Starting another session without overriding...");
     eggDriver.OverridePreviousSession = false;
     eggDriver.StartSession ();
-} catch (eggDriveException e) {
+} catch (EggDriveException e) {
     Console.WriteLine ("Failed to start another session, as expected");
 }
 
