@@ -365,12 +365,12 @@ namespace TestPlant.EggDriver
 
 #region Image searching
 
-		public PropertyList ImageInfo (string imageName)
+		public PropertyList[] ImageInfo (string imageName)
 		{
 			return Execute ((new SenseTalkStatementBuilder ("ImageInfo", SenseTalkStatementType.Function))
 				.AddQuotedParameter (imageName)
 				.ToString ())
-					.ReturnValueAsPropertyList ();
+					.ReturnValueAsPropertyLists ();
 		}
 
 		public void WaitFor (string imageName, double? searchTimeoutSeconds)
