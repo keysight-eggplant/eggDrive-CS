@@ -134,7 +134,7 @@ namespace TestPlant.EggDriver
 		private string url = "http://localhost:5400";
 		private readonly IEggDrive proxy = XmlRpcProxyGen.Create<IEggDrive>();
 
-		protected interface IEggDrive : IXmlRpcProxy
+		public interface IEggDrive : IXmlRpcProxy
 		{
 			[XmlRpcMethod("StartSession")]
 			void StartSession();
